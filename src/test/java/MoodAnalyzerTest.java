@@ -76,5 +76,15 @@ public class MoodAnalyzerTest {
         }
     }
 
+    @Test
+    public void checkEmptyMessageUsingEnum() {
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(" ");
+        try {
+            String mood = moodAnalyzer.checkMood();
+        } catch (MoodAnalyzerExcpetion e) {
+            Assert.assertEquals(MoodAnalyzerExcpetion.Type.EMPTY_MESSAGE,e.type);
+        }
+    }
+
 
 }
