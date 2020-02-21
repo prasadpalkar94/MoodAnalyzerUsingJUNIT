@@ -62,6 +62,19 @@ public class MoodAnalyzerTest {
         }
     }
 
+    @Test
+    public void givenEmptyString() {
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(" ");
+        String mood= " ";
+        try {
+            ExpectedException exceptionRule=ExpectedException.none();
+            exceptionRule.expect(MoodAnalyzerExcpetion.class);
+            mood = moodAnalyzer.checkMood();
+            Assert.assertEquals("HAPPY", mood);
+        }catch (MoodAnalyzerExcpetion e){
+            e.printStackTrace();
+        }
+    }
 
 
 }
