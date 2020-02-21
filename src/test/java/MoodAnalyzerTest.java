@@ -48,5 +48,20 @@ public class MoodAnalyzerTest {
         }
     }
 
+    @Test
+    public void givenNULLShouldReturnHappy() {
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer(null);
+        String mood= null;
+        try {
+            ExpectedException exceptionRule=ExpectedException.none();
+            exceptionRule.expect(MoodAnalyzerExcpetion.class);
+            mood = moodAnalyzer.checkMood();
+            Assert.assertEquals("HAPPY", mood);
+        }catch (MoodAnalyzerExcpetion e){
+            e.printStackTrace();
+        }
+    }
+
+
 
 }
