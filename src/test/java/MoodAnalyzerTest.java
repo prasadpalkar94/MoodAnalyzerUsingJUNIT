@@ -116,4 +116,24 @@ public class MoodAnalyzerTest {
         }
     }
 
+    @Test
+    public void givenClassName_whenImproper_shouldReturn_Exception() {
+        try {
+            MoodAnalyzerFactory.getConstructor("Mood",String.class);
+        }catch(MoodAnalyzerExcpetion e){
+            Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_CLASS,e.type);
+        }
+    }
+
+    @Test
+    public void givenConstructor_whenImproper_shouldReturn_Exception() {
+        try {
+            MoodAnalyzerFactory.getConstructor("MoodAnalyzer",String.class);
+        }catch(MoodAnalyzerExcpetion e){
+            Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_CLASS,e.type);
+        }
+    }
+
+
+
 }

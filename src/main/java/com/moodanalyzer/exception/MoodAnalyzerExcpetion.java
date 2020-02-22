@@ -7,6 +7,7 @@ public class MoodAnalyzerExcpetion extends Exception{
         EMPTY_MESSAGE,
         NO_SUCH_CLASS,
         NO_SUCH_METHOD,
+        INVOKE_METHOD_ISSUE,
         NULL_MESSAGE;
     }
 

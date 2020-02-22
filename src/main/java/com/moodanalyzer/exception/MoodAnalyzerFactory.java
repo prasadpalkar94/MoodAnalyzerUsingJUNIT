@@ -36,5 +36,18 @@ public class MoodAnalyzerFactory {
         return  null;
     }
 
+    public static Constructor<?> getConstructor (String className,Class param)throws MoodAnalyzerExcpetion {
+        Constructor<?> result = null;
+        try {
+            Class<?> moodAnalyzerClass = Class.forName(className);
+            Constructor<?> constructor = moodAnalyzerClass.getConstructor(param);
+            result = constructor;
+        } catch (ClassNotFoundException e) {
+            throw new MoodAnalyzerExcpetion(MoodAnalyzerExcpetion.Type.NO_SUCH_CLASS,e.getMessage());
+        } catch (NoSuchMethodException e){
+            throw new MoodAnalyzerExcpetion(MoodAnalyzerExcpetion.Type.NO_SUCH_METHOD,e.getMessage());
+        }
+        return result;
+    }
 
 }
