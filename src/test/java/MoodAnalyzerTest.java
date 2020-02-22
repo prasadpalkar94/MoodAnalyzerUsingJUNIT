@@ -133,7 +133,51 @@ public class MoodAnalyzerTest {
             Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_CLASS,e.type);
         }
     }
+    @Test
+    public void givenHappy_whenProper_ShouldReturnHappy_byInvokingTheMethod() {
+        Object moodObject = null;
+        try {
+            Class<?> classObj=Class.forName("MoodAnalyser");
+            Constructor<?> myConstructor=classObj.getConstructor(String.class);
+            Object ConstructorObject=myConstructor.newInstance("I am in happy mood");
+            moodObject=MoodAnalyzerFactory.getInvokeMethod(ConstructorObject,"Happy");
+            Assert.assertEquals("Happy",moodObject);
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (MoodAnalyzerExcpetion moodAnalyzerExcpetion) {
+            moodAnalyzerExcpetion.printStackTrace();
+        }
+    }
 
+    @Test
+    public void givenHappy_whenImproper_ShouldReturnException_byInvokingTheMethod() {
+        try {
+            Class<?> classObj=Class.forName("MoodAnalyser");
+            Constructor<?> myConstructor=classObj.getConstructor(String.class);
+            Object ConstructorObject=myConstructor.newInstance("I am in happy mood");
+            Object moodObject=MoodAnalyzerFactory.getInvokeMethod(ConstructorObject,"stHappy");
+        } catch (MoodAnalyzerExcpetion e) {
+            Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_METHOD,e.type);
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        }catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 }

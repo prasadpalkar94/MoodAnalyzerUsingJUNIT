@@ -50,4 +50,17 @@ public class MoodAnalyzerFactory {
         return result;
     }
 
+    public static Object getInvokeMethod(Object constructorObject, String message) throws MoodAnalyzerExcpetion {
+        try {
+            return constructorObject.getClass().getMethod(message).invoke(constructorObject);
+        } catch (NoSuchMethodException e) {
+            throw new MoodAnalyzerExcpetion(MoodAnalyzerExcpetion.Type.NO_SUCH_METHOD,e.getMessage());
+        } catch (IllegalAccessException e) {
+            throw new MoodAnalyzerExcpetion(MoodAnalyzerExcpetion.Type.ILLEGAL_ACCESS,e.getMessage());
+        } catch (InvocationTargetException e) {
+            throw new MoodAnalyzerExcpetion(MoodAnalyzerExcpetion.Type.INVOCATION_METHOD_EXCEPTION,e.getMessage());
+        }
+    }
+
+
 }

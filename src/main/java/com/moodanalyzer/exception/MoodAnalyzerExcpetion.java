@@ -8,7 +8,9 @@ public class MoodAnalyzerExcpetion extends Exception{
         NO_SUCH_CLASS,
         NO_SUCH_METHOD,
         INVOKE_METHOD_ISSUE,
-        NULL_MESSAGE;
+        NULL_MESSAGE,
+        ILLEGAL_ACCESS,
+        INVOCATION_METHOD_EXCEPTION ;
     }
 
     public MoodAnalyzerExcpetion(Type type ,String message) {
