@@ -163,7 +163,7 @@ public class MoodAnalyzerTest {
             Class<?> classObj=Class.forName("MoodAnalyser");
             Constructor<?> myConstructor=classObj.getConstructor(String.class);
             Object ConstructorObject=myConstructor.newInstance("I am in happy mood");
-            Object moodObject=MoodAnalyzerFactory.getInvokeMethod(ConstructorObject,"stHappy");
+            Object moodObject=MoodAnalyzerFactory.getInvokeMethod(ConstructorObject,"saidHappy");
         } catch (MoodAnalyzerExcpetion e) {
             Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_METHOD,e.type);
         } catch (IllegalAccessException e) {
@@ -179,5 +179,31 @@ public class MoodAnalyzerTest {
         }
     }
 
+    @Test
+    public void givenHappy_whenProper_shouldReturnHappy_bySettingField() throws MoodAnalyzerExcpetion {
+        MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithParameterConstructor();
+        String mood = MoodAnalyzerFactory.setFieldValue(moodObject,"I am in happy mood","moodMessage");
+        Assert.assertEquals("Happy", mood);
+    }
+
+    @Test
+    public void givenField_whenNotProper_shouldReturnException() {
+        try {
+            MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithParameterConstructor();
+            String mood = MoodAnalyzerFactory.setFieldValue(moodObject, "I am in happy mood", "moMessage");
+        } catch(MoodAnalyzerExcpetion e){
+            Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_FIELD,e.type);
+        }
+    }
+
+    @Test
+    public void givenFieldMessage_whenNull_shouldReturnException() {
+        try {
+            MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithParameterConstructor();
+            String mood = MoodAnalyzerFactory.setFieldValue(moodObject, null, "moodMessage");
+        } catch(MoodAnalyzerExcpetion e){
+            Assert.assertEquals(MoodAnalyzerExcpetion.Type.FIELD_INVOCATION_ISSUE,e.type);
+        }
+    }
 
 }
