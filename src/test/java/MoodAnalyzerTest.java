@@ -9,7 +9,7 @@ import org.junit.rules.ExpectedException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import static com.moodanalyzer.exception.MoodAnalyzerFactory.analyzemood;
+import static com.moodanalyzer.exception.MoodAnalyzerFactory.analyzemoodwithParameterConstructor;
 import static com.moodanalyzer.exception.MoodAnalyzerFactory.analyzemoodwithDefaultConstructor;
 
 public class MoodAnalyzerTest {
@@ -95,6 +95,16 @@ public class MoodAnalyzerTest {
             Assert.assertEquals(MoodAnalyzerExcpetion.Type.NULL_MESSAGE,e.type);
         }
     }
+
+    @Test
+    public void givenMoodAnalyzer_withDefaultConstructor_when_Proper_should_Return_True(){
+       try {
+           MoodAnalyzer analyzemood2 = MoodAnalyzerFactory.analyzemoodwithDefaultConstructor();
+           Assert.assertEquals(new MoodAnalyzer(), analyzemood2);
+       }catch(MoodAnalyzerExcpetion e){
+           e.printStackTrace();
+       }
+       }
 
 
 }

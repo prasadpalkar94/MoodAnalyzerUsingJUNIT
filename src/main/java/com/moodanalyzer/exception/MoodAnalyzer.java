@@ -9,7 +9,9 @@ public class MoodAnalyzer {
     private Object another;
 
 
-    public MoodAnalyzer(){}
+    public MoodAnalyzer(){
+        message="I am in Happy Mood Always";
+    }
 
     public MoodAnalyzer(String message)
     {
