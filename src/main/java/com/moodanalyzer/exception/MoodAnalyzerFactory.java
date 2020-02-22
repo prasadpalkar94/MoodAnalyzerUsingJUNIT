@@ -16,6 +16,25 @@ public class MoodAnalyzerFactory {
         return  null;
     }
 
+    public static MoodAnalyzer analyzemoodwithParameterConstructor(String message) throws MoodAnalyzerExcpetion{
+        try {
+            Class<?> mood = Class.forName("com.moodanalyzer.exception.MoodAnalyzer");
+            Constructor<?> constructor = mood.getConstructor(String.class);
+            Object myobject1 = constructor.newInstance(message);
+            return (MoodAnalyzer) myobject1;
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return  null;
+    }
 
 
 }

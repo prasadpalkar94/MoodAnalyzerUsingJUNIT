@@ -106,5 +106,14 @@ public class MoodAnalyzerTest {
        }
        }
 
+    @Test
+    public void givenMoodAnalyzer_withParameterConstructor_when_Proper_should_Return_True() {
+        try {
+            MoodAnalyzer analyzemood1 = MoodAnalyzerFactory.analyzemoodwithParameterConstructor("I am in Happy Mood");
+            Assert.assertEquals(new MoodAnalyzer("I am in Happy Mood"), analyzemood1);
+        }catch(MoodAnalyzerExcpetion e){
+            e.printStackTrace();
+        }
+    }
 
 }
