@@ -181,16 +181,16 @@ public class MoodAnalyzerTest {
 
     @Test
     public void givenHappy_whenProper_shouldReturnHappy_bySettingField() throws MoodAnalyzerExcpetion {
-        MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithParameterConstructor();
-        String mood = MoodAnalyzerFactory.setFieldValue(moodObject,"I am in happy mood","moodMessage");
-        Assert.assertEquals("Happy", mood);
+        MoodAnalyzer moodObject1 = MoodAnalyzerFactory.analyzemoodwithDefaultConstructor();
+        String mood = MoodAnalyzerFactory.setFieldValue(moodObject1,"I am in HAPPY mood","message");
+        Assert.assertEquals("HAPPY", mood);
     }
 
     @Test
     public void givenField_whenNotProper_shouldReturnException() {
         try {
-            MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithParameterConstructor();
-            String mood = MoodAnalyzerFactory.setFieldValue(moodObject, "I am in happy mood", "moMessage");
+            MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithDefaultConstructor();
+            String mood = MoodAnalyzerFactory.setFieldValue(moodObject, "I am in happy mood", "moodMessage");
         } catch(MoodAnalyzerExcpetion e){
             Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_FIELD,e.type);
         }
@@ -199,10 +199,10 @@ public class MoodAnalyzerTest {
     @Test
     public void givenFieldMessage_whenNull_shouldReturnException() {
         try {
-            MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithParameterConstructor();
+            MoodAnalyzer moodObject = MoodAnalyzerFactory.analyzemoodwithDefaultConstructor();
             String mood = MoodAnalyzerFactory.setFieldValue(moodObject, null, "moodMessage");
         } catch(MoodAnalyzerExcpetion e){
-            Assert.assertEquals(MoodAnalyzerExcpetion.Type.FIELD_INVOCATION_ISSUE,e.type);
+            Assert.assertEquals(MoodAnalyzerExcpetion.Type.NO_SUCH_FIELD,e.type);
         }
     }
 
